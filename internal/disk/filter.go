@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"df-go/internal/config"
+	"github.com/ijin82/gdf/internal/config"
 )
 
 // FilterOptions specifies rules to filter and sort mount points

@@ -6,9 +6,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"df-go/internal/config"
-	"df-go/internal/disk"
-	"df-go/internal/format"
+	"github.com/ijin82/gdf/internal/config"
+	"github.com/ijin82/gdf/internal/disk"
+	"github.com/ijin82/gdf/internal/format"
 )
 
 type columnDef struct {

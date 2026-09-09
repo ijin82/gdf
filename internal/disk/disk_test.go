@@ -3,7 +3,7 @@ package disk
 import (
 	"testing"
 
-	"df-go/internal/config"
+	"github.com/ijin82/gdf/internal/config"
 )
 
 func TestFilterMounts(t *testing.T) {

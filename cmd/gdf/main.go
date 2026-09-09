@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"df-go/internal/config"
-	"df-go/internal/disk"
-	"df-go/internal/ui"
+	"github.com/ijin82/gdf/internal/config"
+	"github.com/ijin82/gdf/internal/disk"
+	"github.com/ijin82/gdf/internal/ui"
 )
 
 const Version = "1.0.0"

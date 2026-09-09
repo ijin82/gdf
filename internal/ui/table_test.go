@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"df-go/internal/config"
-	"df-go/internal/disk"
+	"github.com/ijin82/gdf/internal/config"
+	"github.com/ijin82/gdf/internal/disk"
 )
 
 func TestRenderTable(t *testing.T) {

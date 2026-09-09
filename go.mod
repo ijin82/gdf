@@ -1,4 +1,4 @@
-module df-go
+module github.com/ijin82/gdf
 
 go 1.26.7
 
