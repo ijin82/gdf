@@ -98,7 +98,7 @@ func RenderTable(w io.Writer, mounts []disk.MountInfo, cfg *config.Config, useCo
 	// Bar width
 	barWidth := cfg.BarWidth
 	if barWidth < 4 {
-		barWidth = 10
+		barWidth = 12
 	}
 	if barWidth > widths[7] {
 		widths[7] = barWidth
