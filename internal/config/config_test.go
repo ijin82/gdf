@@ -32,7 +32,7 @@ func TestConfigLoadAndGenerate(t *testing.T) {
 	if cfg.BarStyle != "smooth" {
 		t.Errorf("Expected BarStyle smooth, got %s", cfg.BarStyle)
 	}
-	if cfg.BarWidth != 16 {
-		t.Errorf("Expected BarWidth 16, got %d", cfg.BarWidth)
+	if cfg.BarWidth != 10 {
+		t.Errorf("Expected BarWidth 10, got %d", cfg.BarWidth)
 	}
 }

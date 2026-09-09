@@ -26,7 +26,7 @@ type Config struct {
 	// Unit: measurement unit ("GiB", "GB", "human-si", "human-iec"). Default: "GiB".
 	Unit string `yaml:"unit"`
 
-	// BarWidth: width of the progress bar in columns (default: 16).
+	// BarWidth: width of the progress bar in columns (default: 10).
 	BarWidth int `yaml:"bar_width"`
 
 	// BarStyle: "smooth", "unicode", "blocks", or "ascii". Default: "smooth".
@@ -57,7 +57,7 @@ func DefaultConfig() *Config {
 		},
 		OnlyRealDisks: true,
 		Unit:          "GiB",
-		BarWidth:      16,
+		BarWidth:      10,
 		BarStyle:      "smooth",
 		Colors:        true,
 		ShowTotal:     true,
@@ -171,13 +171,13 @@ only_real_disks: true
 unit: "GiB"
 
 # 6. Progress bar width (in characters)
-bar_width: 16
+bar_width: 10
 
 # 7. Progress bar style:
-# "smooth"  - [▰▰▰▰▰▰▰▰▱▱▱▱▱▱▱▱] (default)
-# "unicode" - [████████░░░░░░░░]
-# "blocks"  - [■■■■■■■■□□□□□□□□]
-# "ascii"   - [########--------]
+# "smooth"  - [▰▰▰▰▱▱▱▱] (default)
+# "unicode" - [████░░░░]
+# "blocks"  - [■■■■□□□□]
+# "ascii"   - [####----]
 bar_style: "smooth"
 
 # 8. Terminal color output

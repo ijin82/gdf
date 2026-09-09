@@ -9,14 +9,14 @@
 ---
 
 ```text
-DEVICE          TYPE  MOUNTED ON             TOTAL        USED        FREE   USE%  USAGE BAR       
-──────────────  ────  ─────────────────  ─────────  ──────────  ──────────  ─────  ────────────────
-/dev/nvme0n1p4  ext4  /                   72.8 GiB    32.0 GiB    37.0 GiB  46.4%  [▰▰▰▰▰▰▱▱▱▱▱▱▱▱]
-/dev/nvme0n1p1  ext4  /boot               0.90 GiB    0.18 GiB    0.66 GiB  21.4%  [▰▰▰▱▱▱▱▱▱▱▱▱▱▱]
-/dev/nvme0n1p5  ext4  /home              811.2 GiB   436.8 GiB   333.1 GiB  56.7%  [▰▰▰▰▰▰▰▰▱▱▱▱▱▱]
-/dev/nvme1n1p1  ext4  /home/ijin/drive2  937.8 GiB   675.3 GiB   214.8 GiB  75.9%  [▰▰▰▰▰▰▰▰▰▰▰▱▱▱]
-──────────────  ────  ─────────────────  ─────────  ──────────  ──────────  ─────  ────────────────
-Total           -     (4 mounts)         1822.7 GiB 1144.3 GiB   585.6 GiB  66.1%  [▰▰▰▰▰▰▰▰▰▱▱▱▱▱]
+DEVICE          TYPE  MOUNTED ON       TOTAL        USED       FREE   USE%  USAGE BAR 
+──────────────  ────  ──────────  ──────────  ──────────  ─────────  ─────  ──────────
+/dev/nvme0n1p4  ext4  /             72.8 GiB    32.0 GiB   37.0 GiB  46.4%  [▰▰▰▰▱▱▱▱]
+/dev/nvme0n1p1  ext4  /boot          0.9 GiB     0.2 GiB    0.7 GiB  21.4%  [▰▰▱▱▱▱▱▱]
+/dev/nvme0n1p5  ext4  /home        811.2 GiB   436.8 GiB  333.1 GiB  56.7%  [▰▰▰▰▰▱▱▱]
+/dev/nvme1n1p1  ext4  /mnt/data    937.8 GiB   675.3 GiB  214.8 GiB  75.9%  [▰▰▰▰▰▰▱▱]
+──────────────  ────  ──────────  ──────────  ──────────  ─────────  ─────  ──────────
+Total           -     (4 mounts)  1822.7 GiB  1144.3 GiB  585.6 GiB  66.1%  [▰▰▰▰▰▱▱▱]
 ```
 
 ---
@@ -78,7 +78,7 @@ gdf
 
 # Display only specific mount points:
 gdf / /home
-gdf /home/ijin/drive2
+gdf /mnt/data
 
 # Use decimal units (GB):
 gdf -u GB
@@ -97,10 +97,10 @@ gdf -s mount
 gdf -a
 
 # Change progress bar style:
-gdf --bar-style smooth    # [▰▰▰▰▰▰▱▱▱▱▱▱] (default)
-gdf --bar-style unicode   # [██████░░░░░░]
-gdf --bar-style blocks    # [■■■■■■□□□□□□]
-gdf --bar-style ascii     # [######------]
+gdf --bar-style smooth    # [▰▰▰▰▱▱▱▱] (default)
+gdf --bar-style unicode   # [████░░░░]
+gdf --bar-style blocks    # [■■■■□□□□]
+gdf --bar-style ascii     # [####----]
 
 # Disable colored output:
 gdf --no-color
@@ -124,10 +124,12 @@ This creates `~/.config/gdf/config.yaml`.
 # 1. Default mount points to display.
 # If empty ([]), gdf automatically discovers and displays all real physical disks.
 # If populated, gdf will ONLY display the specified mount points by default:
-default_mounts:
-  - /
-  - /home
-  - /home/ijin/drive2
+default_mounts: []
+# Or specify explicit mount points:
+# default_mounts:
+#   - /
+#   - /home
+#   - /mnt/data
 
 # 2. Excluded mount points (exact paths or prefixes):
 exclude_mounts:
@@ -159,7 +161,7 @@ only_real_disks: true
 unit: "GiB"
 
 # 6. Progress bar width (in characters):
-bar_width: 16
+bar_width: 10
 
 # 7. Progress bar style ("smooth", "unicode", "blocks", "ascii"):
 bar_style: "smooth"
