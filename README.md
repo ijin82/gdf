@@ -9,14 +9,14 @@
 ---
 
 ```text
-DEVICE          TYPE  MOUNTED ON             TOTAL       USED      FREE   USE%  USAGE BAR       
-──────────────  ────  ─────────────────  ─────────  ─────────  ────────  ─────  ────────────────
-/dev/nvme0n1p4  ext4  /                    78.2 GB    34.4 GB   39.7 GB  46.4%  [▰▰▰▰▰▰▱▱▱▱▱▱▱▱]
-/dev/nvme0n1p1  ext4  /boot                0.97 GB    0.19 GB   0.71 GB  21.4%  [▰▰▰▱▱▱▱▱▱▱▱▱▱▱]
-/dev/nvme0n1p5  ext4  /home               871.0 GB   469.0 GB  357.7 GB  56.7%  [▰▰▰▰▰▰▰▰▱▱▱▱▱▱]
-/dev/nvme1n1p1  ext4  /home/ijin/drive2  1007.0 GB   725.1 GB  230.6 GB  75.9%  [▰▰▰▰▰▰▰▰▰▰▰▱▱▱]
-──────────────  ────  ─────────────────  ─────────  ─────────  ────────  ─────  ────────────────
-Total           -     (4 mounts)         1957.1 GB  1228.7 GB  628.8 GB  66.1%  [▰▰▰▰▰▰▰▰▰▱▱▱▱▱]
+DEVICE          TYPE  MOUNTED ON             TOTAL        USED        FREE   USE%  USAGE BAR       
+──────────────  ────  ─────────────────  ─────────  ──────────  ──────────  ─────  ────────────────
+/dev/nvme0n1p4  ext4  /                   72.8 GiB    32.0 GiB    37.0 GiB  46.4%  [▰▰▰▰▰▰▱▱▱▱▱▱▱▱]
+/dev/nvme0n1p1  ext4  /boot               0.90 GiB    0.18 GiB    0.66 GiB  21.4%  [▰▰▰▱▱▱▱▱▱▱▱▱▱▱]
+/dev/nvme0n1p5  ext4  /home              811.2 GiB   436.8 GiB   333.1 GiB  56.7%  [▰▰▰▰▰▰▰▰▱▱▱▱▱▱]
+/dev/nvme1n1p1  ext4  /home/ijin/drive2  937.8 GiB   675.3 GiB   214.8 GiB  75.9%  [▰▰▰▰▰▰▰▰▰▰▰▱▱▱]
+──────────────  ────  ─────────────────  ─────────  ──────────  ──────────  ─────  ────────────────
+Total           -     (4 mounts)         1822.7 GiB 1144.3 GiB   585.6 GiB  66.1%  [▰▰▰▰▰▰▰▰▰▱▱▱▱▱]
 ```
 
 ---
@@ -24,7 +24,7 @@ Total           -     (4 mounts)         1957.1 GB  1228.7 GB  628.8 GB  66.1%  
 ## Key Features
 
 - 🎯 **Accurate Calculations (Unlike `pydf`)**: Standard `pydf` calculates percentage using `used / total_blocks`, ignoring the 5% root-reserved blocks in ext4. When user space is full, `pydf` misleadingly shows ~95%. `gdf` correctly uses `used / (used + avail)`, matching GNU `df` precision.
-- 📊 **Clear Sizes in GB**: Displays total capacity (**TOTAL**), used space (**USED**), and available free space (**FREE**) in clean decimal gigabytes (**GB**) or binary gibibytes (**GiB**).
+- 📊 **Clear Sizes in GiB**: Displays total capacity (**TOTAL**), used space (**USED**), and available free space (**FREE**) in clean binary gibibytes (**GiB**, matching `df -h`) or decimal gigabytes (**GB**).
 - ⚙️ **Configurable Default Mounts**: Define which filesystems you want to see by default using `~/.config/gdf/config.yaml`.
 - 🧹 **Clean Output Without Noise**: Automatically hides virtual and pseudo-filesystems (`proc`, `sysfs`, `devtmpfs`, `cgroup`, Docker `overlay`, `efivarfs`), displaying only real physical storage devices.
 - 🎨 **Beautiful & Adaptive UI**: Perfectly aligned columns, adaptive colorized progress bar (Green $\rightarrow$ Yellow $\rightarrow$ Red), and selectable bar styles.
@@ -73,15 +73,15 @@ go install github.com/ijin82/gdf/cmd/gdf@latest
 ## Usage
 
 ```bash
-# Basic usage (displays configured or physical disks in GB):
+# Basic usage (displays configured or physical disks in GiB):
 gdf
 
 # Display only specific mount points:
 gdf / /home
 gdf /home/ijin/drive2
 
-# Use binary units (GiB) matching df -h:
-gdf -u GiB
+# Use decimal units (GB):
+gdf -u GB
 
 # Auto-scale units (kB, MB, GB, TB):
 gdf -u human-si
@@ -152,11 +152,11 @@ exclude_fstypes:
 only_real_disks: true
 
 # 5. Measurement unit:
-# "GB"        - Decimal Gigabytes (1 GB = 1,000,000,000 bytes, default)
-# "GiB"       - Binary Gibibytes (1 GiB = 1,073,741,824 bytes, like df -h)
+# "GiB"       - Binary Gibibytes (1 GiB = 1,073,741,824 bytes, like df -h, default)
+# "GB"        - Decimal Gigabytes (1 GB = 1,000,000,000 bytes)
 # "human-si"  - Auto-scale decimal (kB, MB, GB, TB)
 # "human-iec" - Auto-scale binary (KiB, MiB, GiB, TiB)
-unit: "GB"
+unit: "GiB"
 
 # 6. Progress bar width (in characters):
 bar_width: 16
@@ -178,7 +178,7 @@ show_total: true
 | Flag | Description |
 |---|---|
 | `-a`, `--all` | Show all filesystems (including pseudo/virtual and 0-block mounts) |
-| `-u`, `--unit <unit>` | Measurement unit: `GB` (default), `GiB`, `human-si`, `human-iec` |
+| `-u`, `--unit <unit>` | Measurement unit: `GiB` (default), `GB`, `human-si`, `human-iec` |
 | `-m`, `--mounts <list>` | Comma-separated list of mountpoints to display (e.g. `/,/home`) |
 | `-s`, `--sort <col>` | Sort column: `mount`, `size`, `used`, `avail`, `perc`, `device`, `type` |
 | `-r`, `--reverse` | Reverse sort order |

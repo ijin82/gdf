@@ -26,8 +26,11 @@ func TestConfigLoadAndGenerate(t *testing.T) {
 	if loadedPath != configPath {
 		t.Errorf("Expected loadedPath %s, got %s", configPath, loadedPath)
 	}
-	if cfg.Unit != "GB" {
-		t.Errorf("Expected Unit GB, got %s", cfg.Unit)
+	if cfg.Unit != "GiB" {
+		t.Errorf("Expected Unit GiB, got %s", cfg.Unit)
+	}
+	if cfg.BarStyle != "smooth" {
+		t.Errorf("Expected BarStyle smooth, got %s", cfg.BarStyle)
 	}
 	if cfg.BarWidth != 16 {
 		t.Errorf("Expected BarWidth 16, got %d", cfg.BarWidth)

@@ -23,7 +23,7 @@ type Config struct {
 	// OnlyRealDisks: if true, ignore pseudo/virtual filesystems (default: true).
 	OnlyRealDisks bool `yaml:"only_real_disks"`
 
-	// Unit: measurement unit ("GB", "GiB", "human-si", "human-iec"). Default: "GB".
+	// Unit: measurement unit ("GiB", "GB", "human-si", "human-iec"). Default: "GiB".
 	Unit string `yaml:"unit"`
 
 	// BarWidth: width of the progress bar in columns (default: 16).
@@ -56,7 +56,7 @@ func DefaultConfig() *Config {
 			"rpc_pipefs", "nfsd",
 		},
 		OnlyRealDisks: true,
-		Unit:          "GB",
+		Unit:          "GiB",
 		BarWidth:      16,
 		BarStyle:      "smooth",
 		Colors:        true,
@@ -164,11 +164,11 @@ exclude_fstypes:
 only_real_disks: true
 
 # 5. Measurement unit:
-# "GB"        - Decimal Gigabytes (1 GB = 1,000,000,000 bytes) - default
-# "GiB"       - Binary Gibibytes (1 GiB = 1,073,741,824 bytes)
+# "GiB"       - Binary Gibibytes (1 GiB = 1,073,741,824 bytes, like df -h) - default
+# "GB"        - Decimal Gigabytes (1 GB = 1,000,000,000 bytes)
 # "human-si"  - Auto-scale decimal (kB, MB, GB, TB)
 # "human-iec" - Auto-scale binary (KiB, MiB, GiB, TiB)
-unit: "GB"
+unit: "GiB"
 
 # 6. Progress bar width (in characters)
 bar_width: 16
