@@ -43,7 +43,7 @@ func main() {
 	flag.BoolVar(&flagReverse, "r", false, "Reverse sort order")
 	flag.BoolVar(&flagReverse, "reverse", false, "Reverse sort order")
 	flag.IntVar(&flagBarWidth, "bar-width", 0, "Progress bar width in characters")
-	flag.StringVar(&flagBarStyle, "bar-style", "", "Progress bar style: 'unicode', 'blocks', 'ascii', 'smooth'")
+	flag.StringVar(&flagBarStyle, "bar-style", "", "Progress bar style: 'smooth' (default), 'unicode', 'blocks', 'ascii'")
 	flag.BoolVar(&flagNoColor, "bw", false, "Do not use colors")
 	flag.BoolVar(&flagNoColor, "no-color", false, "Do not use colors")
 	flag.BoolVar(&flagNoTotal, "no-total", false, "Hide summary total row")

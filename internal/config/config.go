@@ -29,7 +29,7 @@ type Config struct {
 	// BarWidth: width of the progress bar in columns (default: 16).
 	BarWidth int `yaml:"bar_width"`
 
-	// BarStyle: "unicode", "blocks", or "ascii". Default: "unicode".
+	// BarStyle: "smooth", "unicode", "blocks", or "ascii". Default: "smooth".
 	BarStyle string `yaml:"bar_style"`
 
 	// Colors: enable ANSI colors (default: true).
@@ -58,7 +58,7 @@ func DefaultConfig() *Config {
 		OnlyRealDisks: true,
 		Unit:          "GB",
 		BarWidth:      16,
-		BarStyle:      "unicode",
+		BarStyle:      "smooth",
 		Colors:        true,
 		ShowTotal:     true,
 	}
@@ -174,11 +174,11 @@ unit: "GB"
 bar_width: 16
 
 # 7. Progress bar style:
+# "smooth"  - [▰▰▰▰▰▰▰▰▱▱▱▱▱▱▱▱] (default)
 # "unicode" - [████████░░░░░░░░]
 # "blocks"  - [■■■■■■■■□□□□□□□□]
 # "ascii"   - [########--------]
-# "smooth"  - [▰▰▰▰▰▰▰▰▱▱▱▱▱▱▱▱]
-bar_style: "unicode"
+bar_style: "smooth"
 
 # 8. Terminal color output
 colors: true

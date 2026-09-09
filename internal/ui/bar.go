@@ -48,7 +48,7 @@ func RenderBar(perc float64, width int, styleName string, useColors bool) string
 
 	st, ok := styles[strings.ToLower(styleName)]
 	if !ok {
-		st = styles["unicode"]
+		st = styles["smooth"]
 	}
 
 	// Bar content width excluding brackets

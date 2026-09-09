@@ -11,12 +11,12 @@
 ```text
 DEVICE          TYPE  MOUNTED ON             TOTAL       USED      FREE   USE%  USAGE BAR       
 ──────────────  ────  ─────────────────  ─────────  ─────────  ────────  ─────  ────────────────
-/dev/nvme0n1p4  ext4  /                    78.2 GB    34.4 GB   39.7 GB  46.4%  [██████░░░░░░░░]
-/dev/nvme0n1p1  ext4  /boot                0.97 GB    0.19 GB   0.71 GB  21.4%  [███░░░░░░░░░░░]
-/dev/nvme0n1p5  ext4  /home               871.0 GB   469.0 GB  357.7 GB  56.7%  [████████░░░░░░]
-/dev/nvme1n1p1  ext4  /home/ijin/drive2  1007.0 GB   725.1 GB  230.6 GB  75.9%  [███████████░░░]
+/dev/nvme0n1p4  ext4  /                    78.2 GB    34.4 GB   39.7 GB  46.4%  [▰▰▰▰▰▰▱▱▱▱▱▱▱▱]
+/dev/nvme0n1p1  ext4  /boot                0.97 GB    0.19 GB   0.71 GB  21.4%  [▰▰▰▱▱▱▱▱▱▱▱▱▱▱]
+/dev/nvme0n1p5  ext4  /home               871.0 GB   469.0 GB  357.7 GB  56.7%  [▰▰▰▰▰▰▰▰▱▱▱▱▱▱]
+/dev/nvme1n1p1  ext4  /home/ijin/drive2  1007.0 GB   725.1 GB  230.6 GB  75.9%  [▰▰▰▰▰▰▰▰▰▰▰▱▱▱]
 ──────────────  ────  ─────────────────  ─────────  ─────────  ────────  ─────  ────────────────
-Total           -     (4 mounts)         1957.1 GB  1228.7 GB  628.8 GB  66.1%  [█████████░░░░░]
+Total           -     (4 mounts)         1957.1 GB  1228.7 GB  628.8 GB  66.1%  [▰▰▰▰▰▰▰▰▰▱▱▱▱▱]
 ```
 
 ---
@@ -97,10 +97,10 @@ gdf -s mount
 gdf -a
 
 # Change progress bar style:
-gdf --bar-style smooth    # [▰▰▰▰▰▰▱▱▱▱▱▱]
+gdf --bar-style smooth    # [▰▰▰▰▰▰▱▱▱▱▱▱] (default)
+gdf --bar-style unicode   # [██████░░░░░░]
 gdf --bar-style blocks    # [■■■■■■□□□□□□]
 gdf --bar-style ascii     # [######------]
-gdf --bar-style unicode   # [██████░░░░░░] (default)
 
 # Disable colored output:
 gdf --no-color
@@ -161,8 +161,8 @@ unit: "GB"
 # 6. Progress bar width (in characters):
 bar_width: 16
 
-# 7. Progress bar style ("unicode", "blocks", "smooth", "ascii"):
-bar_style: "unicode"
+# 7. Progress bar style ("smooth", "unicode", "blocks", "ascii"):
+bar_style: "smooth"
 
 # 8. Terminal color output:
 colors: true
@@ -184,7 +184,7 @@ show_total: true
 | `-r`, `--reverse` | Reverse sort order |
 | `-c`, `--config <path>` | Path to custom configuration file |
 | `--init-config` | Generate default configuration at `~/.config/gdf/config.yaml` |
-| `--bar-style <style>` | Progress bar style: `unicode`, `blocks`, `smooth`, `ascii` |
+| `--bar-style <style>` | Progress bar style: `smooth` (default), `unicode`, `blocks`, `ascii` |
 | `--bar-width <int>` | Progress bar width in characters |
 | `--no-total` | Hide summary total row |
 | `--no-color`, `--bw` | Disable ANSI color output |
